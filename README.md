@@ -68,6 +68,7 @@ tailwind.config.js ->
         }
         reader.readAsDataURL(file)```
 3. The main problem arises to set up brush control.
+4. Clipping mask and now this is the main problem I faced
 
 
 ### Learned:
@@ -94,34 +95,3 @@ tailwind.config.js ->
 ```
 
 
-### rough , need to delete
-```const handleUploadImage = (e) => {
-        console.log(e.target.files)
-        const file = e.target.files[0];
-        console.log("file: ", file)
-        let reader = new FileReader();
-
-        reader.onload = (e) => {
-            const imgUrl = e.target?.result
-            console.log("imgurl: ", imgUrl)
-            let imgElement = document.createElement("img");
-            imgElement.src = imgUrl;
-            imgElement.onload = function () {
-                let fabImage = new FabricImage(imgElement, { width: imgElement.width, height: imgElement.height })
-                var clipPath = new Circle({
-                    radius: 40,
-                    top: -40,
-                    left: -40,
-                });
-                fabImage.clipPath = clipPath;
-
-                canvas.add(fabImage);
-                canvas.centerObject(fabImage)
-                canvas.setActiveObject(fabImage)
-            }
-        }
-        reader.readAsDataURL(file)
-    }
-    const handleImageIcon = () => {
-        setImageIconClicked(!imageIconClicked);
-    }```
