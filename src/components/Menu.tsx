@@ -1,6 +1,7 @@
-import { Circle, FabricImage, Image, PencilBrush } from 'fabric';
+import { Canvas, Circle, FabricImage, Image, PencilBrush } from 'fabric';
 import React, { useContext, useState } from 'react'
 import { BsCardImage } from "react-icons/bs";
+import * as fabric from 'fabric'
 // import { settingContext } from '../context/ContextProvider';
 
 
@@ -15,7 +16,7 @@ const Menu = ({ canvas }) => {
             let reader = new FileReader();
             reader.onload = (e) => {
                 const imgUrl = e.target?.result
-                // console.log("imgurl: ", imgUrl)
+
                 let imgElement = document.createElement("img");
                 imgElement.src = imgUrl;
                 imgElement.onload = function () {
@@ -43,13 +44,13 @@ const Menu = ({ canvas }) => {
     }
 
 
-    const handleDownload = () => {
+    const handleDownload = (e) => {
         if (canvas) {
+
             const dataUrl = canvas.toDataURL({
                 format: "png",
                 quality: 0.8
             })
-
             const link = document.createElement('a')
             link.href = dataUrl
             link.download = "canvas.png"
@@ -58,6 +59,10 @@ const Menu = ({ canvas }) => {
             document.body.removeChild(link);
         }
     }
+
+
+
+
 
 
     return (

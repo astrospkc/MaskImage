@@ -7,6 +7,7 @@ const SettingContext = createContext(null);
 const ContextProvider = ({ children }) => {
   const [imageIconClicked, setImageIconClicked] = useState(false);
   const [brushStrokeWidth, setBrushStrokeWidth] = useState(3);
+  const [brushColor, setBrushColor] = useState("black");
 
   return (
     <SettingContext.Provider
@@ -15,6 +16,8 @@ const ContextProvider = ({ children }) => {
         setImageIconClicked,
         brushStrokeWidth,
         setBrushStrokeWidth,
+        brushColor,
+        setBrushColor,
       }}
     >
       {children}

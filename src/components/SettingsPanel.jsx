@@ -6,7 +6,8 @@ import { Canvas, PatternBrush, PencilBrush, getEnv, Rect } from "fabric";
 import { SettingContext } from "../context/ContextProvider";
 
 const SettingsPanel = ({ canvas }) => {
-  const { brushStrokeWidth, setBrushStrokeWidth } = useContext(SettingContext);
+  const { brushStrokeWidth, setBrushStrokeWidth, brushColor, setBrushColor } =
+    useContext(SettingContext);
   const [selectedObject, setSelectedObject] = useState(null);
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
@@ -65,6 +66,7 @@ const SettingsPanel = ({ canvas }) => {
   };
   const handleColorChange = (e) => {
     console.log(e.target.value);
+    setBrushColor(e.target.value);
   };
   const handleBrushStrokeChange = (e) => {
     console.log(e.target.value);
@@ -82,7 +84,7 @@ const SettingsPanel = ({ canvas }) => {
   if (canvas) {
     // const $ = (id) => document.getElementById(id);
     canvas.freeDrawingBrush = new PencilBrush(canvas);
-    canvas.freeDrawingBrush.color = "red";
+    canvas.freeDrawingBrush.color = brushColor;
     canvas.freeDrawingBrush.width = brushStrokeWidth;
 
     canvas.isDrawingMode = true;
