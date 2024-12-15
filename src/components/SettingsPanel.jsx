@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 import MODE from "../miscellaneous/utils";
+import { Canvas, PatternBrush, PencilBrush, getEnv, Rect } from "fabric";
+
+import { settingContext } from "../context/Provider";
 
 const SettingsPanel = ({ canvas }) => {
   const [selectedObject, setSelectedObject] = useState(null);
@@ -67,6 +70,42 @@ const SettingsPanel = ({ canvas }) => {
     console.log(e.target.value);
   };
 
+  // --------------------------------- drawing feature -------------------
+
+  if (canvas) {
+    // const $ = (id) => document.getElementById(id);
+    canvas.freeDrawingBrush = new PencilBrush(canvas);
+    canvas.freeDrawingBrush.color = "red";
+    canvas.freeDrawingBrush.width = 5;
+
+    canvas.isDrawingMode = true;
+    console.log("canvas: ", canvas);
+
+    // canvas.freeDrawingBrush.width = 5;
+
+    canvas.on("mouse:down", function (options) {
+      console.log("mouse move down:", options.absolutePointer);
+      // canvas.isDrawingMode = true;
+    });
+
+    canvas.on("mouse:up", function (options) {
+      console.log("mouse move up: ", options.pointer);
+      canvas.isDrawingMode = false;
+    });
+    let clipPath;
+    canvas.on("path:created", (e) => {
+      clipPath = e.path;
+      console.log("clipPath: ", clipPath);
+    });
+  } else {
+    console.log("canvas not found");
+    throw new Error("canvas not found");
+  }
+
+  // canvas.add(pencilBrush)
+
+  // -------------------------------------end of drawing feature -------------
+
   return (
     <div className="flex flex-col bg-stone-700 p-3 rounded-lg mr-3">
       <h3 className="my-3">settings</h3>
@@ -88,6 +127,7 @@ const SettingsPanel = ({ canvas }) => {
       />
       <label htmlFor="color">Color</label>
       <input
+        id="drawing-color"
         type="color"
         defaultValue="red"
         name="color"
@@ -96,27 +136,39 @@ const SettingsPanel = ({ canvas }) => {
       />
       <div className="flex flex-col p-3">
         <h3>Brushes</h3>
-        <select name="brush" className="p-3 rounded-lg">
+        <select
+          id="mode"
+          name="brush"
+          className="p-3 rounded-lg"
+          // onChange={handleMode}
+        >
           {MODE &&
             MODE.map((item) => {
               return (
-                <option key={item.id} value={10}>
+                <option
+                  id="drawing-mode-options"
+                  key={item.id}
+                  name={item.mode}
+                  value={item.mode}
+                >
                   {item.mode}
                 </option>
               );
             })}
-          <option value="">pattern</option>
-          <option value="">normal</option>
-          <option value="">dashed</option>
-          <option value="">blur</option>
         </select>
         <input
+          id="drawing-width"
           type="range"
           defaultValue={10}
           name="range"
           placeholder="Range"
           onChange={handleBrushStrokeChange}
         />
+
+        {/* <button onClick={handleMaskImage}>mask the image</button> */}
+        {/* <button onClick={handleClear} id="clear-canvas">
+          clear canvas
+        </button> */}
       </div>
     </div>
   );
@@ -126,6 +178,10 @@ SettingsPanel.propTypes = {
   canvas: PropTypes.shape({
     on: PropTypes.func.isRequired,
   }).isRequired,
+};
+
+SettingsPanel.propTypes = {
+  canvas: PropTypes.instanceOf(Canvas).isRequired, // Ensure canvas is of type fabric.Canvas
 };
 
 export default SettingsPanel;

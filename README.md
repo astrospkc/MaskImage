@@ -68,4 +68,60 @@ tailwind.config.js ->
         }
         reader.readAsDataURL(file)```
 3. The main problem arises to set up brush control.
+
+
+### Learned:
+
+1. fabric.js render its own getContext, we don't need to explicitly define context
+    ``` let ctx = canvas.getContext('2d') // we don't need to do this
+    ```
         
+
+### experimented:
+
+```var ctx = canvas.getContext("2d")
+  console.log("ctx: ", ctx)
+  ctx.strokeStyle = "red"
+  ctx.lineWidth = 5
+  ctx.beginPath();
+  ctx.moveTo(9, 5);
+  ctx.lineTo(100, 90);
+  ctx.shadowColor = "blue";
+  ctx.shadowOffsetX = 1;
+  ctx.shadowBlur = 2;
+  ctx.closePath();
+  ctx.stroke()
+```
+
+
+### rough , need to delete
+```const handleUploadImage = (e) => {
+        console.log(e.target.files)
+        const file = e.target.files[0];
+        console.log("file: ", file)
+        let reader = new FileReader();
+
+        reader.onload = (e) => {
+            const imgUrl = e.target?.result
+            console.log("imgurl: ", imgUrl)
+            let imgElement = document.createElement("img");
+            imgElement.src = imgUrl;
+            imgElement.onload = function () {
+                let fabImage = new FabricImage(imgElement, { width: imgElement.width, height: imgElement.height })
+                var clipPath = new Circle({
+                    radius: 40,
+                    top: -40,
+                    left: -40,
+                });
+                fabImage.clipPath = clipPath;
+
+                canvas.add(fabImage);
+                canvas.centerObject(fabImage)
+                canvas.setActiveObject(fabImage)
+            }
+        }
+        reader.readAsDataURL(file)
+    }
+    const handleImageIcon = () => {
+        setImageIconClicked(!imageIconClicked);
+    }```

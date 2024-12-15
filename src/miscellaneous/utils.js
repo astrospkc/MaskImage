@@ -5,19 +5,19 @@ const MODE = [
   },
   {
     id: 2,
-    mode: "PENCIL",
+    mode: "VLINE",
   },
   {
     id: 3,
-    mode: "PENCIL",
+    mode: "HLINE",
   },
   {
     id: 4,
-    mode: "PENCIL",
+    mode: "SQUARE",
   },
   {
     id: 5,
-    mode: "PENCIL",
+    mode: "DIAMOND",
   },
 ];
 
