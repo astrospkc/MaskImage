@@ -22,6 +22,7 @@
 4. npm react-router-dom
 5. npm install -D tailwindcss postcss autoprefixer
 6. npx tailwindcss init -p
+7. npm i font-awesome
 
 tailwind.config.js -> 
 ```
@@ -34,3 +35,37 @@ tailwind.config.js ->
 ### Problems:
 
 1. got stuck in Static canvas and canvas : which one to use, later found out that static canvas has very little functionality but Canvas has all functionality which is being used in the project, like mouse drag and many more.
+
+2. While uploading an image there was an issue:
+   ```reader.onload = function () {
+            let imgUrl = e.target.result
+            console.log("imgurl: ", imgUrl)
+            let imgElement = document.createElement("img");
+            imgElement.src = imgUrl;
+            imgElement.onload = function () {
+                let fabImage = new FabricImage(imgElement)
+
+                canvas.add(fabImage);
+                canvas.centerObject(fabImage)
+                canvas.setActiveObject(fabImage)
+            }
+        }
+        imgElement value undefined```
+  
+  modified the above code :
+  ```reader.onload = (e) => {
+            const imgUrl = e.target?.result
+            console.log("imgurl: ", imgUrl)
+            let imgElement = document.createElement("img");
+            imgElement.src = imgUrl;
+            imgElement.onload = function () {
+                let fabImage = new FabricImage(imgElement)
+
+                canvas.add(fabImage);
+                canvas.centerObject(fabImage)
+                canvas.setActiveObject(fabImage)
+            }
+        }
+        reader.readAsDataURL(file)```
+3. The main problem arises to set up brush control.
+        
