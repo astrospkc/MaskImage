@@ -1,3 +1,5 @@
+### Backend of the project
+url: [MaskImage](https://github.com/astrospkc/MaskImage-backend)
 # Approach to the problem
 
 ### Create a simple image inpainting widget where users can:
@@ -22,7 +24,8 @@
 4. npm react-router-dom
 5. npm install -D tailwindcss postcss autoprefixer
 6. npx tailwindcss init -p
-7. npm i font-awesome
+7. npm i react-icons
+8. npm i axios
 
 tailwind.config.js -> 
 ```
@@ -67,8 +70,8 @@ tailwind.config.js ->
             }
         }
         reader.readAsDataURL(file)```
-3. The main problem arises to set up brush control.
-4. Clipping mask and now this is the main problem I faced
+
+3. Clipping mask and now this is the main problem I faced
 
 
 ### Learned:
