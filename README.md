@@ -53,7 +53,7 @@ tailwind.config.js ->
                 canvas.setActiveObject(fabImage)
             }
         }
-        imgElement value undefined```
+        imgElement value undefined 
   
   modified the above code :
   ```reader.onload = (e) => {
@@ -69,7 +69,7 @@ tailwind.config.js ->
                 canvas.setActiveObject(fabImage)
             }
         }
-        reader.readAsDataURL(file)```
+        reader.readAsDataURL(file)
 
 3. Clipping mask and now this is the main problem I faced
 
@@ -77,8 +77,8 @@ tailwind.config.js ->
 ### Learned:
 
 1. fabric.js render its own getContext, we don't need to explicitly define context
-    ``` let ctx = canvas.getContext('2d') // we don't need to do this
-    ```
+    ```let ctx = canvas.getContext('2d') // we don't need to do this
+    
         
 
 ### experimented:
@@ -95,6 +95,6 @@ tailwind.config.js ->
   ctx.shadowBlur = 2;
   ctx.closePath();
   ctx.stroke()
-```
+
 
 
