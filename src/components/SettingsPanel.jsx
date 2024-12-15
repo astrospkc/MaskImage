@@ -3,10 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import MODE from "../miscellaneous/utils";
 import { Canvas, PatternBrush, PencilBrush, getEnv, Rect } from "fabric";
-
-import { settingContext } from "../context/Provider";
+import { SettingContext } from "../context/ContextProvider";
 
 const SettingsPanel = ({ canvas }) => {
+  const { brushStrokeWidth, setBrushStrokeWidth } = useContext(SettingContext);
   const [selectedObject, setSelectedObject] = useState(null);
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
@@ -68,7 +68,14 @@ const SettingsPanel = ({ canvas }) => {
   };
   const handleBrushStrokeChange = (e) => {
     console.log(e.target.value);
+
+    setBrushStrokeWidth(e.target.value);
   };
+
+  useState(() => {
+    setBrushStrokeWidth(brushStrokeWidth);
+  }, [brushStrokeWidth]);
+  console.log("brush stroke: ", brushStrokeWidth);
 
   // --------------------------------- drawing feature -------------------
 
@@ -76,7 +83,7 @@ const SettingsPanel = ({ canvas }) => {
     // const $ = (id) => document.getElementById(id);
     canvas.freeDrawingBrush = new PencilBrush(canvas);
     canvas.freeDrawingBrush.color = "red";
-    canvas.freeDrawingBrush.width = 5;
+    canvas.freeDrawingBrush.width = brushStrokeWidth;
 
     canvas.isDrawingMode = true;
     console.log("canvas: ", canvas);

@@ -1,7 +1,7 @@
 import { Circle, FabricImage, Image, PencilBrush } from 'fabric';
 import React, { useContext, useState } from 'react'
 import { BsCardImage } from "react-icons/bs";
-import { settingContext } from '../context/Provider';
+// import { settingContext } from '../context/ContextProvider';
 
 
 const Menu = ({ canvas }) => {

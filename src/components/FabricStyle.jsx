@@ -10,15 +10,12 @@ import { BsArrowLeftSquareFill } from "react-icons/bs";
 import { BsSlashSquare } from "react-icons/bs";
 import Menu from "./Menu";
 import { BiRectangle } from "react-icons/bi";
-import { settingContext } from "../context/Provider";
+// import { settingContext } from "../context/ContextProvider";
 
 export default function FabricStyle() {
   const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
-  let imgURL =
-    "https://unsplash.com/photos/a-close-up-of-a-red-flower-with-green-leaves-XMZ-EHvzqXM";
-  let pubimg = new Image();
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -28,21 +25,6 @@ export default function FabricStyle() {
         isDrawingMode: true,
       });
       initcanvas.backgroundColor = "#f5f5dc";
-
-      // // image upload:
-      // pubimg.onLoad = function () {
-      //   const image = new Image();
-      //   image.src = pubimg.src;
-      //   (image.angle = 45),
-      //     (image.width = 100),
-      //     (image.height = 100),
-      //     (image.lef = 50),
-      //     (image.top = 70),
-      //     (image.scaleX = 0.25),
-      //     (image.scaleY = 0.25),
-      //     initcanvas.add(image);
-      // };
-      // pubimg.src = imgURL;
 
       initcanvas.renderAll();
       setCanvas(initcanvas);
