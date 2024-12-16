@@ -24,7 +24,7 @@ export default function FabricStyle() {
         height: window.innerHeight - window.innerHeight / 3,
         isDrawingMode: true,
       });
-      initcanvas.backgroundColor = "#f5f5dc";
+      initcanvas.backgroundColor = "grey";
 
       initcanvas.renderAll();
       setCanvas(initcanvas);
@@ -90,7 +90,7 @@ export default function FabricStyle() {
     <>
       <div className="">
         <div></div>
-        <div className=" fixed left-0 p-2 justify-start items-center rounded-xl border-2 border-gray-200 mx-3 ">
+        <div className=" fixed left-0 p-2 justify-start items-center rounded-xl shadow-lg shadow-black mx-3 ">
           <h1 className="text-lg">Shapes</h1>
           <div className="flex flex-col  gap-4 justify-center items-center mt-3">
             <BsFillSquareFill
@@ -109,7 +109,7 @@ export default function FabricStyle() {
           <Menu canvas={canvas} />
         </div>
         <canvas ref={canvasRef} id="canvas" />
-        <div className="right-0 fixed justify-end items-center top-1/4 mx-3 ">
+        <div className="right-0 fixed justify-end items-center top-1/4 mx-3 shadow-lg shadow-black">
           {!showSettings ? (
             <div
               onClick={handleShowSettings}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Chonburi&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Frijole&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Londrina+Shadow&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Stylish&family=Yusei+Magic&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,6 +16,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.frijole-regular {
+  font-family: "Frijole", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 100px;
+  text-shadow: 0px 2px 20px rgb(38, 216, 171);
 }
 
 a {
@@ -48,9 +58,13 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin: 4px;
+  box-shadow: 0px 2px 4px rgb(41, 208, 152);
 }
 button:hover {
   border-color: #646cff;
+  scale: 1.2;
+  transition: ease-in-out 300ms;
 }
 button:focus,
 button:focus-visible {

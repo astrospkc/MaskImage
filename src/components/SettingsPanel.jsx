@@ -67,12 +67,20 @@ const SettingsPanel = ({ canvas }) => {
   const handleColorChange = (e) => {
     console.log(e.target.value);
     setBrushColor(e.target.value);
+    if (selectedObject) {
+      selectedObject.set({ fill: e.target.value });
+      canvas.renderAll();
+    }
   };
   const handleBrushStrokeChange = (e) => {
     console.log(e.target.value);
 
     setBrushStrokeWidth(e.target.value);
   };
+
+  // const getSelectedObject = () => {
+  //   return selectedObject
+  // }
 
   useState(() => {
     setBrushStrokeWidth(brushStrokeWidth);
