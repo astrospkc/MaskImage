@@ -1,5 +1,5 @@
 import { Canvas, Circle, FabricImage, Image, PencilBrush } from "fabric";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsCardImage } from "react-icons/bs";
 import * as fabric from "fabric";
 import axios from "axios";
@@ -78,6 +78,7 @@ const Menu = ({ canvas }) => {
 
   const handleProceedToUpload = async (e) => {
     e.preventDefault();
+    setIsReadyToSave(!isReadyToSave);
     console.log(file, fileName);
     const formData = new FormData();
     const response = await fetch(dataUrl);
@@ -90,27 +91,29 @@ const Menu = ({ canvas }) => {
     }
 
     try {
-      const tryUploadImage = await axios.post(
-        `${import.meta.env.VITE_URL}/roughImage/uploadImage`,
+      const tryUploadImage = await fetch(
+        "http://localhost:4000/roughImage/uploadImage",
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          method: "POST",
+          // Remove the Content-Type header
+          body: formData,
         }
       );
-
-      const data = await tryUploadImage.data;
+      const data = await tryUploadImage.json();
+      //   const data = await tryUploadImage.data;
       console.log("data: ", data);
     } catch (error) {
       console.error("error uplaoding image", error);
       throw new Error(error);
     }
-
-    setIsReadyToSave(!isReadyToSave);
   };
 
+  useEffect(() => {
+    setIsReadyToSave(isReadyToSave);
+  }, [isReadyToSave]);
+
   return (
-    <div className="flex flex-row gap-4 border-2 border-gray-600 rounded-lg p-1 items-center ">
+    <div className="flex flex-row gap-4 text-xs border-2 border-gray-600 rounded-lg p-1 items-center ">
       <BsCardImage
         onClick={handleImageIcon}
         className=" hover:scale-150 cursor-pointer ease-in-out duration-500 hover:text-yellow-400"

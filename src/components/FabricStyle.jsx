@@ -105,11 +105,11 @@ export default function FabricStyle() {
             {/* <button onClick={handleClipPath}>Clip path</button> */}
           </div>
         </div>{" "}
-        <div className=" flex top-[5%] fixed justify-center items-center ">
+        <div className=" flex top-[1%] fixed justify-center items-center ">
           <Menu canvas={canvas} />
         </div>
         <canvas ref={canvasRef} id="canvas" />
-        <div className="right-0 fixed justify-end items-center top-1/4 mx-3 shadow-lg shadow-black">
+        <div className="right-0 fixed  justify-end items-center top-1/4 mx-3 shadow-lg shadow-black">
           {!showSettings ? (
             <div
               onClick={handleShowSettings}
