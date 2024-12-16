@@ -116,7 +116,7 @@ export default function FabricStyle() {
               className="flex flex-row bg-stone-500 w-fit p-1 rounded-lg items-center"
             >
               <BsArrowLeftSquareFill className="text-xl mx-3 hover:cursor-pointer  text-white" />
-              <span>show settings</span>
+              <span>click to start drawing</span>
             </div>
           ) : (
             <div>
